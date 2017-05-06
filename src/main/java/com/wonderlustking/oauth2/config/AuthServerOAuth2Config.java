@@ -31,7 +31,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         clients.inMemory()
-                .withClient("my-trusted-client")
+                .withClient("clientId")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
@@ -49,5 +49,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll").checkTokenAccess("isAuthenticated()");
+        //security.realm("user/client");
     }
 }

@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.springframework.boot:spring-boot-starter-security')
+	//compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.security.oauth:spring-security-oauth2')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
