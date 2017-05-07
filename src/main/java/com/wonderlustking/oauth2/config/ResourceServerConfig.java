@@ -1,31 +1,35 @@
 package com.wonderlustking.oauth2.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
 @Configuration
 @EnableResourceServer
+@EnableWebSecurity
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private static final String RESOURCE_ID = "my_rest_api";
-
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId(RESOURCE_ID).stateless(false);
+    @Autowired
+    public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("bill").password("password").roles("AuthenticateUser");
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .anonymous().disable()
-                .requestMatchers().antMatchers("/user/**")
+                .requestMatchers().antMatchers("/user")
                 .and().authorizeRequests()
-                .antMatchers("user/**").access("hasRole('AuthenticateUser')")
+                .antMatchers("/user").access("hasRole('AuthenticateUser')")
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
     }
+
+
 }

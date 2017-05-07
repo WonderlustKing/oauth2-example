@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.wonderlustking.oauth2.config"}, excludeFilters = {
-@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Oauth2SpringBootExampleApplication.class) })
+@ComponentScan(basePackages = {"com.wonderlustking.oauth2.config", "com.wonderlustking.oauth2.user"})
 public class Oauth2SpringBootExampleApplication {
 
 	public static void main(String[] args) {

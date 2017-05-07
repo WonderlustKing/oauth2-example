@@ -1,6 +1,8 @@
 package com.wonderlustking.oauth2.user;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,8 +15,8 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<User> listAllUsers() {
         List<User> users = new ArrayList<>();
         users.add(new User("christos"));
