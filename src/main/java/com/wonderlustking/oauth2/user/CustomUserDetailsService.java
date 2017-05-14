@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(new SimpleGrantedAuthority("AuthenticateUser"));
         return new org.springframework.security.core.userdetails.User(
-                "Bill","pass", authorityList
+                username,"pass", authorityList
         );
     }
 }

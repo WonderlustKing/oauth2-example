@@ -17,7 +17,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("bill").password("password").roles("AuthenticateUser");
+                .withUser("bill").password("password").roles("AuthenticateUser")
+                .and().withUser("Rick Alagadhhgdaaa Sidhuwitz").password("password").roles("facebookUser");
     }
 
     @Override
